@@ -1,11 +1,16 @@
-import GlobalReset from './styles/GlobalStyle'
+import { ThemeProvider } from 'styled-components'
+import { Sidebar } from './Containers/Sidebar'
+import GlobalReset, { Container } from './styles/GlobalStyle'
+import DefaultTheme from './Containers/themes/Default'
 
 function App() {
   return (
-    <>
+    <ThemeProvider theme={DefaultTheme}>
       <GlobalReset />
-      <h1>Hello world</h1>
-    </>
+      <Container>
+        <Sidebar />
+      </Container>
+    </ThemeProvider>
   )
 }
 export default App
