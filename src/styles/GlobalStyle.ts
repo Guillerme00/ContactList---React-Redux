@@ -6,7 +6,9 @@ const GlobalReset = createGlobalStyle`
     margin: 0;
     box-sizing: border-box;
     list-style: none;
+    font-family: "Lexend Deca", sans-serif;
     }
+
     body {
         background-color: ${(props) => props.theme.Background}
     }

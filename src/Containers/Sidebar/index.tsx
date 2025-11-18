@@ -1,3 +1,4 @@
+import Filter from '../../Components/FilterItem'
 import { InputBox, StyledSidebar } from './styles'
 
 export const Sidebar = () => {
@@ -9,6 +10,7 @@ export const Sidebar = () => {
           <span>Search</span>
           <i></i>
         </InputBox>
+        <Filter />
       </StyledSidebar>
     </>
   )
