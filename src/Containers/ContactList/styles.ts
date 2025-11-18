@@ -7,5 +7,5 @@ export const ContactListContainer = styled.div`
   height: 100vh;
   overflow-y: scroll;
   align-items: center;
-  padding-top: 32px;
+  padding: 64px;
 `

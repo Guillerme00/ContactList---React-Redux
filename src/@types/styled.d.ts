@@ -6,6 +6,7 @@ declare module 'styled-components' {
     SecondaryBackground: string
     Text: string
     SecondaryText: string
+    HoverButton: string
     PrimaryButton: string
     PrimaryButtonHover: string
     SuccessButton: string
