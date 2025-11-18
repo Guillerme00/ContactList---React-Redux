@@ -6,6 +6,9 @@ export const StyledSidebar = styled.aside`
   color: ${(props) => props.theme.Text};
   padding: 16px;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: space-between;
 `
 export const InputBox = styled.div`
   position: relative;
@@ -56,5 +59,22 @@ export const InputBox = styled.div`
   input:valid ~ i,
   input:focus ~ i {
     height: 44px;
+  }
+`
+
+export const RegisterButton = styled.button`
+  width: 100%;
+  height: 7vh;
+  padding: 8px;
+  background: ${(props) => props.theme.Background};
+  color: ${(props) => props.theme.Text};
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+
+  &:hover {
+    color: ${(props) => props.theme.Background};
+    background-color: ${(props) => props.theme.Text};
   }
 `
