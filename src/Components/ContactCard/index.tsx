@@ -23,6 +23,7 @@ import Tag from '../TagItem'
 import MessageTag from '../MessageTag'
 
 type Props = {
+  id: number
   img: File | null
   name: string
   tel: number
@@ -33,13 +34,39 @@ type Props = {
 const ContactCard = (props: Props) => {
   const [opened, setOpened] = useState(false)
   const [editing, setEditing] = useState(false)
-  const [past, setPast] = useState<Props>({
+  const [actual, setActual] = useState<Props>({
+    id: 1,
     img: props.img,
-    name: props.name,
-    tel: props.tel,
-    email: props.email,
+    name: 'Guilherme Monteiro Toledo',
+    tel: 0,
+    email: 'email@hotmail.com',
     description: props.description ?? '',
   })
+  const [past, setPast] = useState(actual)
+
+  const save = () => {
+    setPast(() => ({
+      id: actual.id,
+      img: actual.img,
+      name: actual.name,
+      email: actual.email,
+      tel: actual.tel,
+      description: actual.description,
+    }))
+    setEditing(false)
+  }
+
+  const cancel = () => {
+    setActual(() => ({
+      id: actual.id,
+      img: past.img,
+      name: past.name,
+      email: past.email,
+      tel: past.tel,
+      description: past.description,
+    }))
+    setEditing(false)
+  }
 
   return (
     <CardContainer>
@@ -57,17 +84,15 @@ const ContactCard = (props: Props) => {
                 alt="ContactImage"
               />
             )}
-            {!opened && <ContactName>{past.name}</ContactName>}
+            {!opened && <ContactName>{actual.name}</ContactName>}
           </ProfileContainer>
           <ButtonsContainer>
             {!opened ? (
               ''
             ) : editing ? (
               <>
-                <SaveButton onClick={() => setEditing(false)}>Save</SaveButton>
-                <RemoveButton onClick={() => setEditing(false)}>
-                  Cancel
-                </RemoveButton>
+                <SaveButton onClick={() => save()}>Save</SaveButton>
+                <RemoveButton onClick={() => cancel()}>Cancel</RemoveButton>
               </>
             ) : (
               <>
@@ -88,7 +113,7 @@ const ContactCard = (props: Props) => {
         ) : (
           <OpennedForm>
             <NameTagDiv>
-              <ContactName>Guilherme Monteiro Toledo</ContactName>
+              <ContactName>{actual.name}</ContactName>
               <TagContainer>
                 <Tag $name="Family" />
                 <MessageTag />
@@ -98,21 +123,56 @@ const ContactCard = (props: Props) => {
               <Inputs>
                 {editing ? (
                   <>
-                    <Input type="text" placeholder="Name" />
-                    <Input type="number" placeholder="Telephone Number" />
-                    <Input type="email" placeholder="E-Mail" />
+                    <Input
+                      type="text"
+                      placeholder="Name"
+                      value={actual.name}
+                      onChange={(e) =>
+                        setActual((prev) => ({
+                          ...prev,
+                          name: e.target.value,
+                        }))
+                      }
+                    />
+                    <Input
+                      type="number"
+                      placeholder="Telephone Number"
+                      value={actual.tel}
+                      onChange={(e) =>
+                        setActual((prev) => ({
+                          ...prev,
+                          tel: Number(e.target.value),
+                        }))
+                      }
+                    />
+                    <Input
+                      type="email"
+                      placeholder="E-Mail"
+                      value={actual.email}
+                      onChange={(e) =>
+                        setActual((prev) => ({
+                          ...prev,
+                          email: e.target.value,
+                        }))
+                      }
+                    />
                   </>
                 ) : (
                   <>
-                    <Input readOnly type="text" placeholder="Name" />
                     <Input
-                      value={props.tel}
+                      readOnly
+                      type="text"
+                      placeholder="Name"
+                      value={actual.name}
+                    />
+                    <Input
+                      value={actual.tel}
                       readOnly
                       type="number"
                       placeholder="Telephone Number"
                     />
                     <Input
-                      value={props.email}
+                      value={actual.email}
                       readOnly
                       type="email"
                       placeholder="E-Mail"
