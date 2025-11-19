@@ -1,4 +1,4 @@
-import { use, useState } from 'react'
+import { useState } from 'react'
 import {
   ArrowButton,
   CardContainer,
@@ -22,10 +22,24 @@ import {
 import Tag from '../TagItem'
 import MessageTag from '../MessageTag'
 
-const ContactCard = () => {
+type Props = {
+  img: File | null
+  name: string
+  tel: number
+  email: string
+  description?: string | null
+}
+
+const ContactCard = (props: Props) => {
   const [opened, setOpened] = useState(false)
   const [editing, setEditing] = useState(false)
-  const [past, setPast] = useState('')
+  const [past, setPast] = useState<Props>({
+    img: props.img,
+    name: props.name,
+    tel: props.tel,
+    email: props.email,
+    description: props.description ?? '',
+  })
 
   return (
     <CardContainer>
@@ -43,11 +57,7 @@ const ContactCard = () => {
                 alt="ContactImage"
               />
             )}
-            {!opened ? (
-              <ContactName>Guilherme Monteiro Toledo</ContactName>
-            ) : (
-              ''
-            )}
+            {!opened && <ContactName>{past.name}</ContactName>}
           </ProfileContainer>
           <ButtonsContainer>
             {!opened ? (
@@ -86,9 +96,29 @@ const ContactCard = () => {
             </NameTagDiv>
             <InputsContainer>
               <Inputs>
-                <Input readOnly type="text" placeholder="Name" />
-                <Input readOnly type="number" placeholder="Telephone Number" />
-                <Input readOnly type="email" placeholder="E-Mail" />
+                {editing ? (
+                  <>
+                    <Input type="text" placeholder="Name" />
+                    <Input type="number" placeholder="Telephone Number" />
+                    <Input type="email" placeholder="E-Mail" />
+                  </>
+                ) : (
+                  <>
+                    <Input readOnly type="text" placeholder="Name" />
+                    <Input
+                      value={props.tel}
+                      readOnly
+                      type="number"
+                      placeholder="Telephone Number"
+                    />
+                    <Input
+                      value={props.email}
+                      readOnly
+                      type="email"
+                      placeholder="E-Mail"
+                    />
+                  </>
+                )}
               </Inputs>
               <TextArea readOnly placeholder="Description" />
             </InputsContainer>
