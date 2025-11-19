@@ -25,8 +25,6 @@ export const ProfileContainer = styled.div`
 `
 
 export const ContactImg = styled.img`
-  max-width: 112px;
-  max-height: 112px;
   border-radius: 50%;
 `
 
@@ -46,7 +44,7 @@ export const ArrowButton = styled.button`
   border: none;
   z-index: 10;
   transform: rotate(0deg);
-  transition: 0.75s ease;
+  transition: 0.4s ease;
   &.rotated {
     transform: rotate(180deg);
   }
@@ -68,8 +66,8 @@ export const OpennedForm = styled.div`
 `
 
 export const NameTagDiv = styled.div`
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 `
 
 export const Input = styled.input`
@@ -89,7 +87,23 @@ export const TextArea = styled.textarea`
   margin-left: 8px;
   border-radius: 8px;
   resize: none;
-  height: 64px;
+  height: auto;
+`
+
+export const SaveButton = styled.button`
+  max-width: 96px;
+  width: 100%;
+  padding: 16px;
+  background-color: ${(props) => props.theme.SuccessButton};
+  color: ${(props) => props.theme.Background};
+  border: none;
+  cursor: pointer;
+  margin-right: 8px;
+  border-radius: 8px;
+
+  &:hover {
+    background-color: ${(props) => props.theme.SuccessButtonHover};
+  }
 `
 
 export const EditButton = styled.button`
@@ -122,4 +136,18 @@ export const RemoveButton = styled.button`
   &:hover {
     background-color: ${(props) => props.theme.RemoveButtonHover};
   }
+`
+export const InputsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 32px;
+`
+export const Inputs = styled.div`
+  display: flex;
+  flex-direction: column;
+`
+
+export const TagContainer = styled.div`
+  display: flex;
+  justify-content: end;
 `

@@ -5,6 +5,10 @@ const ContactList = () => {
   return (
     <ContactListContainer>
       <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
+      <ContactCard />
     </ContactListContainer>
   )
 }
