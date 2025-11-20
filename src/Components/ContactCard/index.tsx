@@ -1,3 +1,7 @@
+import { useDispatch } from 'react-redux'
+import { updateContact, deleteContact } from '../../store/contacts/contactSlice'
+import type { AppDispatch } from '../../store'
+
 import { useState } from 'react'
 import {
   ArrowButton,
@@ -21,52 +25,30 @@ import {
 } from './styles'
 import Tag from '../TagItem'
 import MessageTag from '../MessageTag'
+import type { ContactType } from '../../types/contact'
 
-type Props = {
-  id: number
-  img: File | null
-  name: string
-  tel: number
-  email: string
-  description?: string | null
-}
-
-const ContactCard = (props: Props) => {
+const ContactCard = (props: ContactType) => {
   const [opened, setOpened] = useState(false)
   const [editing, setEditing] = useState(false)
-  const [actual, setActual] = useState<Props>({
-    id: 1,
-    img: props.img,
-    name: 'Guilherme Monteiro Toledo',
-    tel: 0,
-    email: 'email@hotmail.com',
-    description: props.description ?? '',
-  })
-  const [past, setPast] = useState(actual)
+  const [actual, setActual] = useState<ContactType>(props)
+  const [past, setPast] = useState(props)
 
   const save = () => {
-    setPast(() => ({
-      id: actual.id,
-      img: actual.img,
-      name: actual.name,
-      email: actual.email,
-      tel: actual.tel,
-      description: actual.description,
-    }))
+    setPast(actual)
     setEditing(false)
+    dispatch(updateContact(actual))
   }
 
   const cancel = () => {
-    setActual(() => ({
-      id: actual.id,
-      img: past.img,
-      name: past.name,
-      email: past.email,
-      tel: past.tel,
-      description: past.description,
-    }))
+    setActual(past)
     setEditing(false)
   }
+
+  const handleDelete = () => {
+    dispatch(deleteContact(actual.id))
+  }
+
+  const dispatch = useDispatch<AppDispatch>()
 
   return (
     <CardContainer>
@@ -97,7 +79,9 @@ const ContactCard = (props: Props) => {
             ) : (
               <>
                 <EditButton onClick={() => setEditing(true)}>Edit</EditButton>
-                <RemoveButton>Delete</RemoveButton>
+                <RemoveButton onClick={() => handleDelete()}>
+                  Delete
+                </RemoveButton>
               </>
             )}
             <ArrowButton
