@@ -1,3 +1,5 @@
+import * as enums from '../utils/enums/Contact'
+
 export type ContactType = {
   id: number
   img: File | null
@@ -5,4 +7,5 @@ export type ContactType = {
   tel: number
   email: string
   description?: string | null
+  tag: enums.Choise
 }

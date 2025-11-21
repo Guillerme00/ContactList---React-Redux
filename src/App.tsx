@@ -1,16 +1,26 @@
 import { ThemeProvider } from 'styled-components'
-import { Sidebar } from './Containers/Sidebar'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import GlobalReset, { Container } from './styles/GlobalStyle'
 import DefaultTheme from './themes/Default'
-import ContactList from './Containers/ContactList'
+import Home from './pages/home'
+
+const routes = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />,
+  },
+  {
+    path: '/register',
+    element: <h1>Hello World</h1>,
+  },
+])
 
 function App() {
   return (
     <ThemeProvider theme={DefaultTheme}>
       <GlobalReset />
       <Container>
-        <Sidebar />
-        <ContactList />
+        <RouterProvider router={routes} />
       </Container>
     </ThemeProvider>
   )

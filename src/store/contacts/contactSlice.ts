@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { ContactType } from '../../types/contact'
 import type { PayloadAction } from '@reduxjs/toolkit'
+import * as enums from '../../utils/enums/Contact'
 
 const initialState: ContactType[] = [
   {
@@ -10,6 +11,7 @@ const initialState: ContactType[] = [
     email: 'joao@email.com',
     img: null,
     description: 'Amigo de longa data',
+    tag: enums.Choise.WORK,
   },
   {
     id: 2,
@@ -18,6 +20,7 @@ const initialState: ContactType[] = [
     email: 'maria@email.com',
     img: null,
     description: 'Colega de trabalho',
+    tag: enums.Choise.FRIENDS,
   },
 ]
 
@@ -32,6 +35,10 @@ const contactSlice = createSlice({
 
     deleteContact(state, action: PayloadAction<number>) {
       return state.filter((c) => c.id !== action.payload)
+    },
+
+    addContact(state, action: PayloadAction<ContactType>) {
+      state.push(action.payload)
     },
   },
 })

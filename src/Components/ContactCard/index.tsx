@@ -48,6 +48,11 @@ const ContactCard = (props: ContactType) => {
     dispatch(deleteContact(actual.id))
   }
 
+  const capitalize = (str: string) => {
+    if (!str) return str
+    return str.charAt(0).toUpperCase() + str.slice(1)
+  }
+
   const dispatch = useDispatch<AppDispatch>()
 
   return (
@@ -99,7 +104,7 @@ const ContactCard = (props: ContactType) => {
             <NameTagDiv>
               <ContactName>{actual.name}</ContactName>
               <TagContainer>
-                <Tag $name="Family" />
+                <Tag $name={capitalize(actual.tag)} />
                 <MessageTag />
               </TagContainer>
             </NameTagDiv>
