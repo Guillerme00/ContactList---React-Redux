@@ -6,21 +6,12 @@ import * as enums from '../../utils/enums/Contact'
 const initialState: ContactType[] = [
   {
     id: 1,
-    name: 'João Silva',
-    tel: 123456789,
-    email: 'joao@email.com',
+    name: 'Guilherme Monteiro Toledo',
+    tel: 15996841111,
+    email: 'guilherme@gmail.com',
     img: null,
-    description: 'Amigo de longa data',
+    description: 'Developer of this website',
     tag: enums.Choise.WORK,
-  },
-  {
-    id: 2,
-    name: 'Maria Souza',
-    tel: 987654321,
-    email: 'maria@email.com',
-    img: null,
-    description: 'Colega de trabalho',
-    tag: enums.Choise.FRIENDS,
   },
 ]
 
