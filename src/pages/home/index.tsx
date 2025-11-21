@@ -1,10 +1,13 @@
 import ContactList from '../../Containers/ContactList'
 import { Sidebar } from '../../Containers/Sidebar'
+import { Container } from '../../styles/GlobalStyle'
 
 const Home = () => (
   <>
-    <Sidebar />
-    <ContactList />
+    <Container>
+      <Sidebar />
+      <ContactList />
+    </Container>
   </>
 )
 

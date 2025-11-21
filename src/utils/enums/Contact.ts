@@ -3,4 +3,5 @@ export enum Choise {
   FRIENDS = 'friends',
   WORK = 'work',
   SERVICES = 'services',
+  ALL = 'all',
 }

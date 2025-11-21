@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import GlobalReset, { Container } from './styles/GlobalStyle'
 import DefaultTheme from './themes/Default'
 import Home from './pages/home'
+import Register from './pages/register/register'
 
 const routes = createBrowserRouter([
   {
@@ -11,7 +12,7 @@ const routes = createBrowserRouter([
   },
   {
     path: '/register',
-    element: <h1>Hello World</h1>,
+    element: <Register />,
   },
 ])
 
@@ -19,9 +20,7 @@ function App() {
   return (
     <ThemeProvider theme={DefaultTheme}>
       <GlobalReset />
-      <Container>
-        <RouterProvider router={routes} />
-      </Container>
+      <RouterProvider router={routes} />
     </ThemeProvider>
   )
 }
