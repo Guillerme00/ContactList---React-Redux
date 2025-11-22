@@ -29,6 +29,8 @@ const RegisterContainer = () => {
     img: null,
   })
 
+  let idIndetify = 1
+
   const attState = (e: number | string, item: string) => {
     setContact({
       ...contact,
@@ -43,13 +45,14 @@ const RegisterContainer = () => {
       email: '',
       description: '',
       tag: enums.Choise.NONE,
-      id: 1,
+      id: idIndetify,
       img: null,
     })
     navigate('/')
   }
 
   const save = () => {
+    idIndetify += 1
     dispatch(addContact(contact))
     setContact({
       name: '',
@@ -57,7 +60,7 @@ const RegisterContainer = () => {
       email: '',
       description: '',
       tag: enums.Choise.NONE,
-      id: 1,
+      id: idIndetify,
       img: null,
     })
     navigate('/')
