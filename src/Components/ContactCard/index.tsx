@@ -169,7 +169,24 @@ const ContactCard = (props: ContactType) => {
                   </>
                 )}
               </Inputs>
-              <TextArea readOnly placeholder="Description" />
+              {editing ? (
+                <TextArea
+                  placeholder="Description"
+                  value={actual.description ?? ''}
+                  onChange={(e) =>
+                    setActual((prev) => ({
+                      ...prev,
+                      description: e.target.value,
+                    }))
+                  }
+                />
+              ) : (
+                <TextArea
+                  readOnly
+                  placeholder="Description"
+                  value={actual.description ?? ''}
+                />
+              )}
             </InputsContainer>
           </OpennedForm>
         )}

@@ -55,3 +55,35 @@ export const StyledArea = styled.textarea`
 export const StyledLabel = styled.label`
   margin-right: 16px;
 `
+export const StyledButtonContainer = styled.div`
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 32px;
+`
+export const StyledCancelButton = styled.button`
+  width: 128px;
+  padding: 8px;
+  border: none;
+  border-radius: 32px;
+  color: ${(props) => props.theme.Text};
+  cursor: pointer;
+  background-color: ${(props) => props.theme.RemoveButton};
+
+  &:hover {
+    background-color: ${(props) => props.theme.RemoveButtonHover};
+  }
+`
+export const StyledSucessButton = styled.button`
+  width: 128px;
+  padding: 8px;
+  border: none;
+  border-radius: 32px;
+  color: ${(props) => props.theme.Text};
+  cursor: pointer;
+  background-color: ${(props) => props.theme.SuccessButton};
+
+  &:hover {
+    background-color: ${(props) => props.theme.SuccessButtonHover};
+  }
+`

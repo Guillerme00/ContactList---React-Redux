@@ -8,14 +8,20 @@ import {
   StyledArea,
   StyledSubTitle,
   StyledLabel,
+  StyledButtonContainer,
+  StyledCancelButton,
+  StyledSucessButton,
 } from './styles'
 import type { ContactType } from '../../types/contact'
 import * as enums from '../../utils/enums/Contact'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addContact } from '../../store/contacts/contactSlice'
 
 const RegisterContainer = () => {
   const [contact, setContact] = useState<ContactType>({
     name: '',
-    tel: 0,
+    tel: '',
     email: '',
     description: '',
     tag: enums.Choise.NONE,
@@ -30,6 +36,36 @@ const RegisterContainer = () => {
     })
   }
 
+  const cancel = () => {
+    setContact({
+      name: '',
+      tel: '',
+      email: '',
+      description: '',
+      tag: enums.Choise.NONE,
+      id: 1,
+      img: null,
+    })
+    navigate('/')
+  }
+
+  const save = () => {
+    dispatch(addContact(contact))
+    setContact({
+      name: '',
+      tel: '',
+      email: '',
+      description: '',
+      tag: enums.Choise.NONE,
+      id: 1,
+      img: null,
+    })
+    navigate('/')
+  }
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
   return (
     <>
       <StyledContainer>
@@ -39,20 +75,24 @@ const RegisterContainer = () => {
             <StyledInput
               type="text"
               placeholder="Name"
+              value={contact.name}
               onChange={(item) => attState(item.target.value, 'name')}
             />
             <StyledInput
               type="number"
               placeholder="Telephone"
+              value={contact.tel}
               onChange={(item) => attState(item.target.value, 'tel')}
             />
             <StyledInput
               type="email"
               placeholder="Email"
+              value={contact.email}
               onChange={(item) => attState(item.target.value, 'email')}
             />
             <StyledArea
               placeholder="Description"
+              value={contact.description ?? ''}
               onChange={(item) => attState(item.target.value, 'description')}
             />
             <form>
@@ -72,7 +112,7 @@ const RegisterContainer = () => {
                 <input
                   type="radio"
                   name="type"
-                  value={enums.Choise.FAMILY}
+                  value={enums.Choise.FRIENDS}
                   checked={contact.tag === enums.Choise.FRIENDS}
                   onChange={(item) => attState(item.target.value, 'tag')}
                 />
@@ -100,6 +140,12 @@ const RegisterContainer = () => {
               </StyledLabel>
             </form>
           </StyledForm>
+          <StyledButtonContainer>
+            <StyledCancelButton onClick={() => cancel()}>
+              Cancel
+            </StyledCancelButton>
+            <StyledSucessButton onClick={() => save()}>Save</StyledSucessButton>
+          </StyledButtonContainer>
         </StyledRegister>
       </StyledContainer>
     </>

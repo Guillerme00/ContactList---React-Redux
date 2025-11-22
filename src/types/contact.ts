@@ -4,7 +4,7 @@ export type ContactType = {
   id: number
   img: File | null
   name: string
-  tel: number
+  tel: number | string
   email: string
   description?: string | null
   tag: enums.Choise

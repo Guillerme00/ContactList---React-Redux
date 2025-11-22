@@ -1,6 +1,6 @@
 import { ThemeProvider } from 'styled-components'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import GlobalReset, { Container } from './styles/GlobalStyle'
+import GlobalReset from './styles/GlobalStyle'
 import DefaultTheme from './themes/Default'
 import Home from './pages/home'
 import Register from './pages/register/register'

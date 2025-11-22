@@ -1,7 +1,9 @@
 import Filter from '../../Components/FilterItem'
 import { InputBox, RegisterButton, StyledSidebar } from './styles'
+import { useNavigate } from 'react-router-dom'
 
 export const Sidebar = () => {
+  const navigate = useNavigate()
   return (
     <>
       <StyledSidebar>
@@ -14,7 +16,9 @@ export const Sidebar = () => {
           </InputBox>
           <Filter />
         </div>
-        <RegisterButton>Register New Contact</RegisterButton>
+        <RegisterButton onClick={() => navigate('/register')}>
+          Register New Contact
+        </RegisterButton>
       </StyledSidebar>
     </>
   )
