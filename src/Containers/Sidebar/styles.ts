@@ -72,6 +72,28 @@ export const RegisterButton = styled.button`
   border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
+  margin-top: 8px;
+
+  &:hover {
+    color: ${(props) => props.theme.Background};
+    background-color: ${(props) => props.theme.Text};
+  }
+`
+export const StyledAGithub = styled.a`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 7vh;
+  padding: 8px;
+  background: ${(props) => props.theme.Background};
+  color: ${(props) => props.theme.Text};
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 8px;
+  text-decoration: none;
 
   &:hover {
     color: ${(props) => props.theme.Background};
